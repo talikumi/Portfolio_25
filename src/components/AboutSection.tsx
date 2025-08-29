@@ -1,6 +1,5 @@
 import P5Background from './p5Background';
 import ScrollFloat from './ScrollFloat';
-import LogoSlider from './LogoSlider';
 import WaterEffect from './WaterEffect';
 import { useRef } from 'react';
 import { useIsomorphicLayoutEffect, createSectionReveal, gsap, ScrollTrigger } from '@/lib/gsap';
@@ -105,10 +104,7 @@ const AboutSection = () => {
 				With an eye for detail and a passion for blending aesthetics with functionality, I create digital experiences that are both beautiful and intuitive. My approach combines editorial design sensibilities with modern web technologies. I believe in the power of subtle animations, thoughtful typography, and elegant color palettes to elevate digital products.
 			</ScrollFloat>
 
-			{/* Technology Logo Slider */}
-			<div className="mt-8 mb-8">
-				<LogoSlider />
-			</div>
+
 
 
 

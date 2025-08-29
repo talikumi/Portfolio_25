@@ -21,6 +21,31 @@ const WaterEffect = () => {
   const mouseRef = useRef<THREE.Vector2>(new THREE.Vector2());
   const frameRef = useRef<number>(0);
   const animationIdRef = useRef<number | null>(null);
+  const logoAnimationRef = useRef<number>(0);
+
+  // Logo data with colors and simplified icon representations
+  const logos = [
+    { name: 'React', color: '#61DAFB', symbol: '⚛' },
+    { name: 'JavaScript', color: '#F7DF1E', symbol: 'JS' },
+    { name: 'HTML5', color: '#E34F26', symbol: 'HTML' },
+    { name: 'CSS3', color: '#1572B6', symbol: 'CSS' },
+    { name: 'Node.js', color: '#339933', symbol: 'Node' },
+    { name: 'Git', color: '#F05032', symbol: 'Git' },
+    { name: 'Figma', color: '#F24E1E', symbol: 'Figma' },
+    { name: 'AWS', color: '#FF9900', symbol: 'AWS' },
+    { name: 'Docker', color: '#2496ED', symbol: 'Docker' },
+    { name: 'Python', color: '#3776AB', symbol: 'Python' },
+    { name: 'PHP', color: '#777BB4', symbol: 'PHP' },
+    { name: 'WordPress', color: '#21759B', symbol: 'WP' },
+    { name: 'Shopify', color: '#7AB55C', symbol: 'Shopify' },
+    { name: 'Stripe', color: '#008CDD', symbol: 'Stripe' },
+    { name: 'GitHub', color: '#181717', symbol: 'GitHub' },
+    { name: 'npm', color: '#CB3837', symbol: 'npm' },
+    { name: 'LinkedIn', color: '#0A66C2', symbol: 'LinkedIn' },
+    { name: 'Twitter', color: '#1DA1F2', symbol: 'Twitter' },
+    { name: 'Instagram', color: '#E4405F', symbol: 'Instagram' },
+    { name: 'Facebook', color: '#1877F2', symbol: 'Facebook' }
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -92,44 +117,38 @@ const WaterEffect = () => {
     simScene.add(simQuad);
     scene.add(renderQuad);
 
-    // Create a background texture matching ProjectGrid
+    // Create a background texture with animated logo slider
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext("2d", { alpha: true });
 
-    // Fill with blush-white background (same as ProjectGrid)
-    ctx.fillStyle = '#FFF8F2'; // blush-white color
+    if (!ctx) return;
+
+    // Clear canvas
+    ctx.clearRect(0, 0, width, height);
+
+    // Set background
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
     ctx.fillRect(0, 0, width, height);
 
-    // Calculate positions based on canvas size
+    // Calculate positions
     const centerX = width / 2;
-    const startY = height * 0.1; // Increased padding to match ProjectGrid (pt-20)
-    const lineHeight = 80; // Much bigger spacing
-    let currentY = startY;
+    let currentY = height * 0.15;
+    const lineHeight = height * 0.08;
 
-    // "ABOUT" title - editorial-subtitle style (same as "Selected Works")
-    ctx.fillStyle = '#C68C1C'; // blush-gold color
-    ctx.font = '300 32px Poppins, sans-serif'; // font-poppins, font-light, text-base
+    // "In a Nutshell" title
+    ctx.fillStyle = '#B76E79';
+    ctx.font = '98px Voyage, serif';
     ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.letterSpacing = '2px'; // Add 2px letter spacing
-    ctx.fillText("ABOUT", centerX, currentY);
-    ctx.letterSpacing = 'normal'; // Reset letter spacing
-    currentY += lineHeight * 1.32; // Double the spacing for more separation
-
-    // "In a Nutshell" title - editorial-title style (same as "Back In Time")
-    ctx.fillStyle = '#B76E79'; // blush-rosegold color
-    ctx.font = '98px Voyage, serif'; // font-voyage, text-6xl (same as ProjectGrid)
-    ctx.textAlign = 'center';
-	ctx.letterSpacing = '4px'
+    ctx.letterSpacing = '4px';
     ctx.textBaseline = 'middle';
     ctx.fillText("In a Nutshell", centerX, currentY);
     currentY += lineHeight * 2;
 
-    // Main text content - Voyage font, blush-rosegold color, much bigger
-    ctx.fillStyle = '#B76E79'; // blush-rosegold color (same as "Back In Time")
-    ctx.font = 'bold 45px Voyage, serif'; // font-voyage, much bigger than before
+    // Main text content
+    ctx.fillStyle = '#B76E79';
+    ctx.font = 'bold 45px Voyage, serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     
@@ -160,33 +179,65 @@ const WaterEffect = () => {
 
     currentY += lineHeight;
 
-    // Technology logos - blush-rosegold color
-    ctx.fillStyle = '#B76E79'; // blush-rosegold color
-    ctx.font = 'bold 32px Poppins, sans-serif'; // Much bigger font
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
+    // Animated logo slider
+    const logoSize = Math.min(width * 0.08, height * 0.08);
+    const logoSpacing = logoSize * 1.5;
+    const totalLogoWidth = logos.length * logoSpacing;
+    const animationSpeed = 0.5; // pixels per frame
     
-    const technologies = ['JS', 'TS', 'HTML5', 'CSS3', 'React', 'Git', 'Vite', 'ESLint', 'Chat', 'JS', 'TS', 'HTML5'];
-    const techSpacing = width / (technologies.length + 1);
+    // Calculate animation offset
+    const animationOffset = (Date.now() * animationSpeed) % (totalLogoWidth + width);
+    const startX = -totalLogoWidth + (animationOffset % (totalLogoWidth + width));
     
-    technologies.forEach((tech, index) => {
-      const x = techSpacing * (index + 1);
-      ctx.fillText(tech, x, currentY);
+    // Draw logos with sliding animation
+    logos.forEach((logo, index) => {
+      const x = startX + index * logoSpacing;
+      const y = currentY;
+      
+      // Only draw if logo is visible on screen
+      if (x > -logoSize && x < width + logoSize) {
+        // Draw logo background
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.strokeStyle = 'rgba(183, 110, 121, 0.2)';
+        ctx.lineWidth = 2;
+        
+        const logoX = x + logoSize / 2;
+        const logoY = y;
+        const radius = logoSize / 2;
+        
+        // Draw rounded rectangle background
+        ctx.beginPath();
+        ctx.roundRect(logoX - radius, logoY - radius, logoSize, logoSize, 8);
+        ctx.fill();
+        ctx.stroke();
+        
+        // Draw logo symbol/text
+        ctx.fillStyle = logo.color;
+        ctx.font = `${logoSize * 0.4}px Arial, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(logo.symbol, logoX, logoY);
+        
+        // Draw logo name below
+        ctx.fillStyle = '#B76E79';
+        ctx.font = `${logoSize * 0.2}px Arial, sans-serif`;
+        ctx.fillText(logo.name, logoX, logoY + logoSize * 0.6);
+      }
     });
 
     currentY += lineHeight * 2;
 
-    // Expertise section - blush-rosegold color
-    ctx.fillStyle = '#B76E79'; // blush-rosegold color
-    ctx.font = 'bold 40px Poppins, sans-serif'; // Much bigger font
+    // Expertise section
+    ctx.fillStyle = '#B76E79';
+    ctx.font = 'bold 40px Poppins, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText("Expertise", centerX, currentY);
     currentY += lineHeight;
 
-    // Skills - blush-rosegold color
-    ctx.fillStyle = '#B76E79'; // blush-rosegold color
-    ctx.font = '28px Poppins, sans-serif'; // Much bigger font
+    // Skills
+    ctx.fillStyle = '#B76E79';
+    ctx.font = '28px Poppins, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     
@@ -200,17 +251,17 @@ const WaterEffect = () => {
 
     currentY += lineHeight * 2;
 
-    // What I bring to the table - blush-rosegold color
-    ctx.fillStyle = '#B76E79'; // blush-rosegold color
-    ctx.font = 'bold 40px Poppins, sans-serif'; // Much bigger font
+    // What I bring to the table
+    ctx.fillStyle = '#B76E79';
+    ctx.font = 'bold 40px Poppins, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText("What I bring to the table", centerX, currentY);
     currentY += lineHeight;
 
-    // Deliverables - blush-rosegold color
-    ctx.fillStyle = '#B76E79'; // blush-rosegold color
-    ctx.font = '28px Poppins, sans-serif'; // Much bigger font
+    // Deliverables
+    ctx.fillStyle = '#B76E79';
+    ctx.font = '28px Poppins, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     
@@ -222,51 +273,169 @@ const WaterEffect = () => {
       ctx.fillText(deliverable, x, currentY);
     });
 
-    const textTexture = new THREE.CanvasTexture(canvas);
-    textTexture.minFilter = THREE.LinearFilter;
-    textTexture.magFilter = THREE.LinearFilter;
-    textTexture.format = THREE.RGBAFormat;
-
-    // Mouse event handlers
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      const x = (e.clientX - rect.left) * window.devicePixelRatio;
-      const y = (rect.height - (e.clientY - rect.top)) * window.devicePixelRatio;
-      mouse.x = x;
-      mouse.y = y;
-    };
-
-    const handleMouseLeave = () => {
-      mouse.set(0, 0);
-    };
-
-    container.addEventListener("mousemove", handleMouseMove);
-    container.addEventListener("mouseleave", handleMouseLeave);
+    // Create texture from canvas
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
 
     // Animation loop
     const animate = () => {
-      simMaterial.uniforms.frame.value = frame++;
-      simMaterial.uniforms.time.value = performance.now() / 1000;
+      frame++;
+      
+      // Update logo animation
+      logoAnimationRef.current = Date.now();
+      
+      // Recreate canvas with updated animation
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+      ctx.fillRect(0, 0, width, height);
 
-      simMaterial.uniforms.textureA.value = rtA.texture;
-      renderer.setRenderTarget(rtB);
+      // Recalculate positions
+      currentY = height * 0.15;
+
+      // "In a Nutshell" title
+      ctx.fillStyle = '#B76E79';
+      ctx.font = '98px Voyage, serif';
+      ctx.textAlign = 'center';
+      ctx.letterSpacing = '4px';
+      ctx.textBaseline = 'middle';
+      ctx.fillText("In a Nutshell", centerX, currentY);
+      currentY += lineHeight * 2;
+
+      // Main text content
+      ctx.fillStyle = '#B76E79';
+      ctx.font = 'bold 45px Voyage, serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      
+      lines.forEach(line => {
+        ctx.fillText(line.trim(), centerX, currentY);
+        currentY += lineHeight;
+      });
+
+      currentY += lineHeight;
+
+      // Animated logo slider with updated animation
+      const updatedAnimationOffset = (Date.now() * animationSpeed) % (totalLogoWidth + width);
+      const updatedStartX = -totalLogoWidth + (updatedAnimationOffset % (totalLogoWidth + width));
+      
+      logos.forEach((logo, index) => {
+        const x = updatedStartX + index * logoSpacing;
+        const y = currentY;
+        
+        if (x > -logoSize && x < width + logoSize) {
+          // Draw logo background
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+          ctx.strokeStyle = 'rgba(183, 110, 121, 0.2)';
+          ctx.lineWidth = 2;
+          
+          const logoX = x + logoSize / 2;
+          const logoY = y;
+          const radius = logoSize / 2;
+          
+          ctx.beginPath();
+          ctx.roundRect(logoX - radius, logoY - radius, logoSize, logoSize, 8);
+          ctx.fill();
+          ctx.stroke();
+          
+          // Draw logo symbol/text
+          ctx.fillStyle = logo.color;
+          ctx.font = `${logoSize * 0.4}px Arial, sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(logo.symbol, logoX, logoY);
+          
+          // Draw logo name below
+          ctx.fillStyle = '#B76E79';
+          ctx.font = `${logoSize * 0.2}px Arial, sans-serif`;
+          ctx.fillText(logo.name, logoX, logoY + logoSize * 0.6);
+        }
+      });
+
+      currentY += lineHeight * 2;
+
+      // Expertise section
+      ctx.fillStyle = '#B76E79';
+      ctx.font = 'bold 40px Poppins, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText("Expertise", centerX, currentY);
+      currentY += lineHeight;
+
+      // Skills
+      ctx.fillStyle = '#B76E79';
+      ctx.font = '28px Poppins, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      
+      skills.forEach((skill, index) => {
+        const x = skillSpacing * (index + 1);
+        ctx.fillText(skill, x, currentY);
+      });
+
+      currentY += lineHeight * 2;
+
+      // What I bring to the table
+      ctx.fillStyle = '#B76E79';
+      ctx.font = 'bold 40px Poppins, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText("What I bring to the table", centerX, currentY);
+      currentY += lineHeight;
+
+      // Deliverables
+      ctx.fillStyle = '#B76E79';
+      ctx.font = '28px Poppins, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      
+      deliverables.forEach((deliverable, index) => {
+        const x = deliverableSpacing * (index + 1);
+        ctx.fillText(deliverable, x, currentY);
+      });
+
+      // Update texture
+      texture.needsUpdate = true;
+
+      // Water simulation
+      simMaterial.uniforms.time.value = Date.now() * 0.001;
+      simMaterial.uniforms.frame.value = frame;
+      simMaterial.uniforms.mouse.value = mouse;
+
+      // Ping-pong rendering
+      renderer.setRenderTarget(rtA);
       renderer.render(simScene, camera);
 
-      renderMaterial.uniforms.textureA.value = rtB.texture;
-      renderMaterial.uniforms.textureB.value = textTexture;
+      renderMaterial.uniforms.textureA.value = rtA.texture;
+      renderMaterial.uniforms.textureB.value = texture;
+
       renderer.setRenderTarget(null);
       renderer.render(scene, camera);
-
-      const temp = rtA;
-      rtA = rtB;
-      rtB = temp;
 
       animationIdRef.current = requestAnimationFrame(animate);
     };
 
+    // Mouse event handlers
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
+      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      event.preventDefault();
+      const rect = container.getBoundingClientRect();
+      const touch = event.touches[0];
+      mouse.x = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((touch.clientY - rect.top) / rect.height) * 2 + 1;
+    };
+
+    container.addEventListener('mousemove', handleMouseMove);
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+    // Start animation
     animate();
 
-    // Store refs for cleanup
+    // Store refs
     rendererRef.current = renderer;
     sceneRef.current = scene;
     simSceneRef.current = simScene;
@@ -275,18 +444,18 @@ const WaterEffect = () => {
     rtBRef.current = rtB;
     simMaterialRef.current = simMaterial;
     renderMaterialRef.current = renderMaterial;
-    textTextureRef.current = textTexture;
+    textTextureRef.current = texture;
     mouseRef.current = mouse;
     frameRef.current = frame;
 
-    // Cleanup function
+    // Cleanup
     return () => {
+      container.removeEventListener('mousemove', handleMouseMove);
+      container.removeEventListener('touchmove', handleTouchMove);
+      
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
       }
-      
-      container.removeEventListener("mousemove", handleMouseMove);
-      container.removeEventListener("mouseleave", handleMouseLeave);
       
       if (renderer && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
@@ -295,17 +464,15 @@ const WaterEffect = () => {
       renderer?.dispose();
       rtA?.dispose();
       rtB?.dispose();
-      simMaterial?.dispose();
-      renderMaterial?.dispose();
-      textTexture?.dispose();
+      texture?.dispose();
     };
   }, []);
 
   return (
-    <div 
-      ref={containerRef} 
-      className="absolute inset-0"
-      style={{ zIndex: 5 }}
+    <div
+      ref={containerRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 10 }}
     />
   );
 };
