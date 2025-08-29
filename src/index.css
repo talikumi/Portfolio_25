@@ -158,6 +158,29 @@
   }
 }
 
+/* Logo Slider Styles */
+.logo-slider-container {
+  position: relative;
+  background: linear-gradient(90deg, transparent, rgba(183, 110, 121, 0.05), transparent);
+}
+
+.logo-track {
+  will-change: transform;
+}
+
+.logo-item {
+  flex-shrink: 0;
+}
+
+.logo-icon-wrapper {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-icon-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(183, 110, 121, 0.15);
+}
+
 .canvas {
   width: 134px;
   height: 141px;
