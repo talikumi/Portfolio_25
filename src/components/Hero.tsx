@@ -1,4 +1,3 @@
-import CanvasPetals from './CanvasPetals';
 import Butterflies from './Butterflies';
 import { useRef } from 'react';
 import { gsap, useIsomorphicLayoutEffect, revealFrom } from '@/lib/gsap';
