@@ -89,7 +89,20 @@ const ProjectGrid = () => {
     if (!section || !track) return;
 
     const ctx = gsap.context(() => {
-      // Simple fade-in animation for cards without conflicting ScrollTrigger
+      // Horizontal scroll animation for the track within the pinned section
+      gsap.to(track, {
+        x: () => -(track.scrollWidth - window.innerWidth),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${track.scrollWidth - window.innerWidth + 100}`,
+          scrub: 1,
+          pin: false, // Don't pin here since it's handled by the stacking effect
+        }
+      });
+
+      // Simple fade-in animation for cards
       const cards = gsap.utils.toArray<HTMLElement>('[data-card]');
       cards.forEach((card) => {
         gsap.fromTo(
@@ -110,60 +123,65 @@ const ProjectGrid = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="projects" className="relative px-6 pt-20 pb-8 bg-blush-white">
-      <div className="max-w-6xl mx-auto text-center mb-24">
-        <h2 className="editorial-subtitle">Selected Works</h2>
-        <h3 className="editorial-title text-4xl md:text-5xl">Back In Time</h3>
-      </div>
+    <>
+      <section ref={sectionRef} id="projects" className="relative px-6 pt-20 pb-8 bg-blush-white">
+        <div className="max-w-6xl mx-auto text-center mb-24">
+          <h2 className="editorial-subtitle">Selected Works</h2>
+          <h3 className="editorial-title text-4xl md:text-5xl">Back In Time</h3>
+        </div>
 
-      {/* Horizontal scroller track */}
-      <div className="relative h-[80vh] overflow-hidden">
-        <div
-          ref={trackRef}
-          className="absolute top-0 left-0 h-full flex items-center gap-6 will-change-transform"
-          style={{ width: `max-content` }}
-        >
-          {panels.map((project) => (
-            <article
-              key={project.id}
-              data-card
-              className="flex-shrink-0 h-full w-[60vw] sm:w-[44vw] md:w-[34vw] lg:w-[26vw] xl:w-[22vw]"
-            >
-              <div className="group relative w-full h-auto aspect-square bg-white border border-blush-gold/25 rounded-sm shadow-sm hover:border-blush-gold/50 transition-colors overflow-hidden">
-                <img
-                  src={project.imageUrl}
-                  alt={project.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-blush-mauve/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <span className="absolute top-3 left-3 text-xs text-white/90 bg-blush-mauve/60 backdrop-blur px-2 py-1 rounded-full">
-                  {project.year}
-                </span>
+        {/* Horizontal scroller track */}
+        <div className="relative h-[65vh] overflow-hidden">
+          <div
+            ref={trackRef}
+            className="absolute top-0 left-0 h-full flex items-center gap-6 will-change-transform"
+            style={{ width: `max-content` }}
+          >
+            {panels.map((project) => (
+              <article
+                key={project.id}
+                data-card
+                className="flex-shrink-0 h-full w-[60vw] sm:w-[44vw] md:w-[34vw] lg:w-[26vw] xl:w-[22vw]"
+              >
+                <div className="group relative w-full h-auto aspect-square bg-white border border-blush-gold/25 rounded-sm shadow-sm hover:border-blush-gold/50 transition-colors overflow-hidden">
+                  <img
+                    src={project.imageUrl}
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blush-mauve/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="absolute top-3 left-3 text-xs text-white/90 bg-blush-mauve/60 backdrop-blur px-2 py-1 rounded-full">
+                    {project.year}
+                  </span>
 
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h4 className="font-playfair text-blush-white text-lg mb-1 drop-shadow">{project.title}</h4>
-                  <p className="text-xs text-white/90 mb-2 drop-shadow">
-                    {project.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags?.slice(0, 2).map((tag) => (
-                        <span key={tag} className="text-[10px] text-blush-pink bg-blush-pink/20 border border-blush-gold/40 px-2 py-0.5 rounded-sm">
-                          {tag}
-                        </span>
-                      ))}
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <h4 className="font-playfair text-blush-white text-lg mb-1 drop-shadow">{project.title}</h4>
+                    <p className="text-xs text-white/90 mb-2 drop-shadow">
+                      {project.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags?.slice(0, 2).map((tag) => (
+                          <span key={tag} className="text-[10px] text-blush-pink bg-blush-pink/20 border border-blush-gold/40 px-2 py-0.5 rounded-sm">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <a href={project.githubUrl || '#'} className="text-xs text-blush-gold hover:text-blush-white transition-colors">
+                        View →
+                      </a>
                     </div>
-                    <a href={project.githubUrl || '#'} className="text-xs text-blush-gold hover:text-blush-white transition-colors">
-                      View →
-                    </a>
                   </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      
+      {/* Spacer to ensure contact section is visible - increased height */}
+      <div className="h-screen bg-blush-white"></div>
+    </>
   );
 };
 

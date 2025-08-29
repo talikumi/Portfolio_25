@@ -24,13 +24,11 @@ export const useSectionAnimations = () => {
       // Set proper z-index and positioning for stacking order
       const aboutSection = document.querySelector('#about');
       const projectsSection = document.querySelector('#projects');
-      const contactSection = document.querySelector('#contact');
 
       if (aboutSection) gsap.set(aboutSection, { zIndex: 10, position: 'relative' });
       if (projectsSection) gsap.set(projectsSection, { zIndex: 20, position: 'relative' });
-      if (contactSection) gsap.set(contactSection, { zIndex: 30, position: 'relative' });
 
-      // --- STACK EFFECT ---
+      // --- STACK EFFECT (only Hero, About, and Projects) ---
       // Pin Hero, About, and Projects with no spacing
       const stackSections = gsap.utils.toArray(['#home', '#about', '#projects']) as Element[];
       
@@ -43,13 +41,23 @@ export const useSectionAnimations = () => {
         });
       });
 
-      // Pin Contact section with spacing so Footer can appear
+      // --- CONTACT SECTION SLIDE-IN EFFECT (outside stacking) ---
+      // Create slide-in panels for contact section with staggered effect
+      const contactSection = document.querySelector('#contact');
       if (contactSection) {
-        ScrollTrigger.create({
-          trigger: contactSection,
-          start: "top top",
-          pin: true,
-          pinSpacing: true // This allows space for the Footer
+        const contactPanels = gsap.utils.toArray('[data-reveal]', contactSection) as Element[];
+        
+        contactPanels.forEach((panel, i) => {
+          gsap.from(panel, {
+            xPercent: 100,
+            ease: "none",
+            scrollTrigger: {
+              trigger: panel,
+              start: `top bottom-=${i * 50}`, // Stagger the start points
+              end: "top center",
+              scrub: true
+            }
+          });
         });
       }
 

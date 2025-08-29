@@ -255,7 +255,7 @@ const WaterEffect = () => {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.letterSpacing = '1px'; // Subtle letter spacing
-    ctx.fillText("Technologies I work with most", centerX, logoSliderY - 80);
+    ctx.fillText("Technologies I work with most", centerX, logoSliderY - (lineHeight * 1.2));
     ctx.letterSpacing = 'normal'; // Reset letter spacing
 
     // Move expertise section way down (independent of logo slider)
