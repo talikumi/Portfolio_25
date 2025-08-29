@@ -1,5 +1,4 @@
 import Butterflies from './Butterflies';
-import LogoSlider from './LogoSlider';
 import { useRef } from 'react';
 import { gsap, useIsomorphicLayoutEffect, revealFrom } from '@/lib/gsap';
 
@@ -98,10 +97,7 @@ const Hero = () => {
 
 		</div>{*/}
 		
-        {/* Technology Logo Slider */}
-        <div className="mt-16">
-          <LogoSlider />
-        </div>
+
      
         {/*}
         <div className="section-divider mt-20">

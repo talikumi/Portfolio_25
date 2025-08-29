@@ -166,7 +166,7 @@ const WaterEffect = () => {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     
-    const technologies = ['JS', 'TS', 'HTML5', 'CSS3', 'React', 'Git', 'Vite', 'ESLint', 'Chat', 'JS', 'TS', 'HTML5'];
+    const technologies = ['React', 'JavaScript', 'HTML5', 'CSS3', 'Node.js', 'Git', 'Figma', 'AWS', 'Docker', 'Python', 'PHP', 'WordPress', 'Shopify', 'Stripe', 'GitHub', 'npm', 'LinkedIn', 'Twitter', 'Instagram', 'Facebook'];
     const techSpacing = width / (technologies.length + 1);
     
     technologies.forEach((tech, index) => {
