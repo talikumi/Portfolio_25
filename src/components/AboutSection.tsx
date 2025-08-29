@@ -1,6 +1,7 @@
 import P5Background from './p5Background';
 import ScrollFloat from './ScrollFloat';
 import TechnologyCarousel from './TechnologyCarousel';
+import WaterEffect from './WaterEffect';
 import { useRef } from 'react';
 import { useIsomorphicLayoutEffect, createSectionReveal, gsap, ScrollTrigger } from '@/lib/gsap';
 
@@ -81,10 +82,11 @@ const AboutSection = () => {
 	}, []);
 
 	return (
-				<section ref={sectionRef} id="about" className="relative z-30 py-20 px-6 bg-white overflow-hidden mt-[14px]">
+				<section ref={sectionRef} id="about" className="relative z-30 py-20 px-6 bg-blush-white overflow-hidden mt-[14px]">
 		 <P5Background />
+		 <WaterEffect />
  
-		<div className="max-w-6xl mx-auto">
+		<div className="max-w-6xl mx-auto opacity-0">
 		  <h2 data-reveal className="editorial-subtitle text-center">About</h2>
 		  
 		  {/* Testo centrato */}

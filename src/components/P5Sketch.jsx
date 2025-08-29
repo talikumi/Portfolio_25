@@ -33,7 +33,10 @@ const P5Sketch = () => {
 
   const draw = (p5) => {
 	if (!flock) return;
+	
+	// Clear with transparent background
 	p5.clear();
+	p5.background(0, 0, 0, 0); // Transparent background
   
 	lotusLeaves.forEach(leaf => leaf.show());
   
