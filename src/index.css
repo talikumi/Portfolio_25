@@ -184,24 +184,45 @@
 /* Icon Slider Styles */
 .icon-slider-container {
   position: relative;
+  overflow: hidden;
+  width: 100%;
   background: linear-gradient(90deg, transparent, rgba(183, 110, 121, 0.05), transparent);
+  padding: 2rem 0;
 }
 
 .icon-track {
+  display: flex;
+  align-items: center;
   will-change: transform;
+  animation: scroll 30s linear infinite;
 }
 
 .icon-item {
   flex-shrink: 0;
+  min-width: 120px;
 }
 
 .icon-wrapper {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f3f4f6;
 }
 
 .icon-wrapper:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(183, 110, 121, 0.15);
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .canvas {

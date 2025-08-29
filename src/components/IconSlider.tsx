@@ -1,9 +1,6 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from '@/lib/gsap';
+import React from 'react';
 
 const IconSlider = () => {
-  const sliderRef = useRef<HTMLDivElement>(null);
-
   const icons = [
     { name: 'Apple', icon: 'fab fa-apple', color: '#000000' },
     { name: 'Google', icon: 'fab fa-google', color: '#4285F4' },
@@ -27,60 +24,40 @@ const IconSlider = () => {
     { name: 'npm', icon: 'fab fa-npm', color: '#CB3837' }
   ];
 
-  useEffect(() => {
-    if (!sliderRef.current) return;
-
-    const slider = sliderRef.current;
-    const track = slider.querySelector('.icon-track') as HTMLElement;
-
-    if (!track) return;
-
-    // Clone icons for seamless loop
-    const originalIcons = track.children;
-    const clonedIcons = Array.from(originalIcons).map(icon => icon.cloneNode(true));
-
-    // Append clones to create seamless loop
-    clonedIcons.forEach(icon => {
-      track.appendChild(icon);
-    });
-
-    // Create infinite scroll animation
-    const animation = gsap.to(track, {
-      x: `-${track.scrollWidth / 2}px`,
-      duration: 30,
-      ease: 'none',
-      repeat: -1
-    });
-
-    // Pause on hover
-    const handleMouseEnter = () => animation.pause();
-    const handleMouseLeave = () => animation.resume();
-
-    slider.addEventListener('mouseenter', handleMouseEnter);
-    slider.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      animation.kill();
-      slider.removeEventListener('mouseenter', handleMouseEnter);
-      slider.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, []);
-
   return (
-    <div ref={sliderRef} className="icon-slider-container overflow-hidden py-8">
-      <div className="icon-track flex items-center space-x-12">
+    <div className="icon-slider-container">
+      <div className="icon-track">
+        {/* First set of icons */}
         {icons.map((iconData, index) => (
           <div
-            key={index}
-            className="icon-item flex flex-col items-center justify-center min-w-[80px] group"
+            key={`first-${index}`}
+            className="icon-item flex flex-col items-center justify-center mx-8 group"
           >
-            <div className="icon-wrapper p-4 rounded-lg bg-white/80 backdrop-blur-sm shadow-sm border border-blush-mauve/20 transition-all duration-300 group-hover:scale-110 group-hover:shadow-md group-hover:bg-white/90">
+            <div className="icon-wrapper">
               <i
-                className={`${iconData.icon} text-3xl transition-all duration-300 group-hover:scale-110`}
+                className={`${iconData.icon} text-4xl transition-all duration-300`}
                 style={{ color: iconData.color }}
               ></i>
             </div>
-            <span className="icon-name text-xs text-blush-mauve mt-2 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span className="icon-name text-sm text-gray-600 mt-3 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {iconData.name}
+            </span>
+          </div>
+        ))}
+        
+        {/* Duplicate set for seamless loop */}
+        {icons.map((iconData, index) => (
+          <div
+            key={`second-${index}`}
+            className="icon-item flex flex-col items-center justify-center mx-8 group"
+          >
+            <div className="icon-wrapper">
+              <i
+                className={`${iconData.icon} text-4xl transition-all duration-300`}
+                style={{ color: iconData.color }}
+              ></i>
+            </div>
+            <span className="icon-name text-sm text-gray-600 mt-3 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               {iconData.name}
             </span>
           </div>
