@@ -1,7 +1,7 @@
 import CanvasPetals from './CanvasPetals';
 import Butterflies from './Butterflies';
 import { useRef } from 'react';
-import { gsap, useIsomorphicLayoutEffect, revealFrom, ScrollTrigger } from '@/lib/gsap';
+import { gsap, useIsomorphicLayoutEffect, revealFrom } from '@/lib/gsap';
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -12,6 +12,7 @@ const Hero = () => {
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      // Initial reveal animation
       revealFrom([subtitleRef.current, titleRef.current, paraRef.current], { y: 28, stagger: 0.18, duration: 1.25 });
     }, sectionRef);
     return () => ctx.revert();

@@ -1,5 +1,5 @@
 import { useRef, useMemo } from 'react';
-import { gsap, useIsomorphicLayoutEffect, ScrollTrigger } from '@/lib/gsap';
+import { gsap, useIsomorphicLayoutEffect } from '@/lib/gsap';
 
 interface Project {
   id: number;
@@ -89,24 +89,7 @@ const ProjectGrid = () => {
     if (!section || !track) return;
 
     const ctx = gsap.context(() => {
-      const getMaxX = () => track.scrollWidth - window.innerWidth;
-      const scrollFactor = 2.0; // slower horizontal progress
-
-      gsap.to(track, {
-        x: () => -(track.scrollWidth - window.innerWidth),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: () => '+=' + getMaxX() * scrollFactor,
-          scrub: 1.2, // smoother
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      // Soft fade-in of cards as they approach the center
+      // Simple fade-in animation for cards without conflicting ScrollTrigger
       const cards = gsap.utils.toArray<HTMLElement>('[data-card]');
       cards.forEach((card) => {
         gsap.fromTo(
@@ -117,11 +100,7 @@ const ProjectGrid = () => {
             y: 0,
             duration: 0.6,
             ease: 'power2.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'left center',
-              toggleActions: 'play none none reverse',
-            },
+            delay: 0.2
           }
         );
       });
@@ -137,7 +116,7 @@ const ProjectGrid = () => {
         <h3 className="editorial-title text-4xl md:text-5xl">Back In Time</h3>
       </div>
 
-      {/* Horizontal scroller track (pinned while scrolling) */}
+      {/* Horizontal scroller track */}
       <div className="relative h-[80vh] overflow-hidden">
         <div
           ref={trackRef}

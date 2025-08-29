@@ -37,7 +37,7 @@ const ContactSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="contact" className="py-12 px-6">
+    <section ref={sectionRef} id="contact" className="py-12 px-6 bg-blush-white">
       <div className="max-w-4xl mx-auto">
         <h2 data-reveal className="editorial-subtitle text-center">Get in Touch</h2>
         <h3 data-reveal className="editorial-title text-center mb-4 text-4xl md:text-5xl">Let's Create Beauty Together</h3>
