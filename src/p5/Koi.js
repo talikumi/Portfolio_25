@@ -8,8 +8,8 @@ export default class Koi {
 		this.position = p5.createVector(x, y);
 		this.velocity = p5.constructor.Vector.random2D(); // ✅ CORRETTO con istanza
 		this.acceleration = p5.createVector(0, 0);
-		this.baseSize = parseInt(p5.random(10, 15));
-		this.bodyLength = this.baseSize * 2,5;
+		this.baseSize = parseInt(p5.random(12.5, 16));
+		this.bodyLength = this.baseSize * 3 - 3;
 		this.body = Array(this.bodyLength).fill({ ...this.position });
 	  }
   
@@ -94,17 +94,17 @@ export default class Koi {
 	show() {
 	  const { p5 } = this;
 	  this.body.forEach((b, i) => {
-		let size = i < this.bodyLength / 6 ? this.baseSize + i * 1.8 : this.baseSize * 2 - i;
+		let size = i < this.bodyLength / 6 ? this.baseSize + i * .5 : this.baseSize * 1.5 - i * 0.6;
 		let alpha = (this.bodyLength - i) * 1.5; // Increased opacity by 50%
   
-		let borderColor = p5.color('#C59364');
+		let borderColor = p5.color('#d6a576');
 		borderColor.setAlpha(alpha);
 		p5.stroke(borderColor);
 		p5.strokeWeight(.8);
   
 		// Create gradient from existing color to pink
 		let gradientRatio = i / this.bodyLength; // 0 at head, 1 at tail
-		let pinkColor = p5.color(255, 152, 193); // Pink color
+		let pinkColor = p5.color(255, 130, 190); // Pink color
 		
 		// Interpolate between existing color and pink
 		let gradientColor = p5.lerpColor(this.color, pinkColor, gradientRatio);
@@ -118,7 +118,7 @@ export default class Koi {
 	showShadow() {
 	  const { p5 } = this;
 	  this.body.forEach((b, i) => {
-		let size = i < this.bodyLength / 6 ? this.baseSize + i * 1.8 : this.baseSize * 2 - i;
+		let size = i < this.bodyLength / 6 ? this.baseSize + i * 1.2 : this.baseSize * 1.5 - i * 0.5;
 		p5.noStroke();
 		p5.fill(0, 4);
 		p5.ellipse(b.x + 10, b.y + 10, size, size);
