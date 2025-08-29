@@ -97,7 +97,6 @@ const Hero = () => {
 
 		</div>{*/}
 		
-
      
         {/*}
         <div className="section-divider mt-20">

@@ -1,6 +1,6 @@
 import P5Background from './p5Background';
 import ScrollFloat from './ScrollFloat';
-import IconSlider from './IconSlider';
+import TechnologyCarousel from './TechnologyCarousel';
 import WaterEffect from './WaterEffect';
 import { useRef } from 'react';
 import { useIsomorphicLayoutEffect, createSectionReveal, gsap, ScrollTrigger } from '@/lib/gsap';
@@ -105,14 +105,7 @@ const AboutSection = () => {
 				With an eye for detail and a passion for blending aesthetics with functionality, I create digital experiences that are both beautiful and intuitive. My approach combines editorial design sensibilities with modern web technologies. I believe in the power of subtle animations, thoughtful typography, and elegant color palettes to elevate digital products.
 			</ScrollFloat>
 
-			{/* Icon Slider */}
-			<div className="mt-8 mb-8">
-				<IconSlider />
-			</div>
-
-
-
-
+			<TechnologyCarousel />
 
 			<div data-reveal className="pt-6 border-t border-blush-rosegold/20">
 			  <h5 className="font-playfair text-xl text-blush-pink mb-4">Expertise</h5>
