@@ -17,10 +17,10 @@ import {
   faStripe,
   faMongodb,
   faPostgresql,
-  faFirebase,
   faVercel,
   faNetlify,
-  faGithub
+  faGithub,
+  faNpm
 } from '@fortawesome/free-brands-svg-icons';
 import { gsap } from '@/lib/gsap';
 
@@ -44,10 +44,10 @@ const LogoSlider = () => {
     { icon: faStripe, name: 'Stripe', color: '#008CDD' },
     { icon: faMongodb, name: 'MongoDB', color: '#47A248' },
     { icon: faPostgresql, name: 'PostgreSQL', color: '#336791' },
-    { icon: faFirebase, name: 'Firebase', color: '#FFCA28' },
     { icon: faVercel, name: 'Vercel', color: '#000000' },
     { icon: faNetlify, name: 'Netlify', color: '#00C7B7' },
-    { icon: faGithub, name: 'GitHub', color: '#181717' }
+    { icon: faGithub, name: 'GitHub', color: '#181717' },
+    { icon: faNpm, name: 'npm', color: '#CB3837' }
   ];
 
   useEffect(() => {
