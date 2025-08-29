@@ -54,8 +54,8 @@ void main() {
     vec2 mouseUV = mouse / resolution;
     if(mouse.x > 0.0) {
         float dist = distance(uv, mouseUV);
-        if(dist <= 0.02) {  // Smaller radius
-            pressure += 1.0 * (1.0 - dist / 0.02);  // Reduced intensity
+        if(dist <= 0.021) {  // Larger radius for bigger trails
+            pressure += 1.0 * (1.0 - dist / 0.021);  // Adjusted intensity for larger area
         }
     }
     
@@ -86,7 +86,7 @@ void main() {
     
     vec3 normal = normalize(vec3(-data.z * 2.0, 0.5, -data.w * 2.0));
     vec3 lightDir = normalize(vec3(-3.0, 10.0, 3.0));
-    float specular = pow(max(0.0, dot(normal, lightDir)), 60.0) * 1.5;
+    float specular = pow(max(0.0, dot(normal, lightDir)), 60.0) * 0.01; // Further reduced to 0.1 for very subtle effect
     
     // Preserve the original text color better, similar to the original example
     gl_FragColor = color + vec4(specular);
