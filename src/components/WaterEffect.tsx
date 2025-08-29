@@ -23,28 +23,28 @@ const WaterEffect = () => {
   const animationIdRef = useRef<number | null>(null);
   const logoAnimationRef = useRef<number>(0);
 
-  // Logo data with colors and simplified icon representations
+  // Logo data with FontAwesome icons
   const logos = [
-    { name: 'React', color: '#61DAFB', symbol: '⚛' },
-    { name: 'JavaScript', color: '#F7DF1E', symbol: 'JS' },
-    { name: 'HTML5', color: '#E34F26', symbol: 'HTML' },
-    { name: 'CSS3', color: '#1572B6', symbol: 'CSS' },
-    { name: 'Node.js', color: '#339933', symbol: 'Node' },
-    { name: 'Git', color: '#F05032', symbol: 'Git' },
-    { name: 'Figma', color: '#F24E1E', symbol: 'Figma' },
-    { name: 'AWS', color: '#FF9900', symbol: 'AWS' },
-    { name: 'Docker', color: '#2496ED', symbol: 'Docker' },
-    { name: 'Python', color: '#3776AB', symbol: 'Python' },
-    { name: 'PHP', color: '#777BB4', symbol: 'PHP' },
-    { name: 'WordPress', color: '#21759B', symbol: 'WP' },
-    { name: 'Shopify', color: '#7AB55C', symbol: 'Shopify' },
-    { name: 'Stripe', color: '#008CDD', symbol: 'Stripe' },
-    { name: 'GitHub', color: '#181717', symbol: 'GitHub' },
-    { name: 'npm', color: '#CB3837', symbol: 'npm' },
-    { name: 'LinkedIn', color: '#0A66C2', symbol: 'LinkedIn' },
-    { name: 'Twitter', color: '#1DA1F2', symbol: 'Twitter' },
-    { name: 'Instagram', color: '#E4405F', symbol: 'Instagram' },
-    { name: 'Facebook', color: '#1877F2', symbol: 'Facebook' }
+    { name: 'Apple', color: '#000000', icon: '🍎' },
+    { name: 'Google', color: '#4285F4', icon: 'G' },
+    { name: 'Facebook', color: '#1877F2', icon: 'f' },
+    { name: 'Twitter', color: '#1DA1F2', icon: '𝕏' },
+    { name: 'React', color: '#61DAFB', icon: '⚛' },
+    { name: 'JavaScript', color: '#F7DF1E', icon: 'JS' },
+    { name: 'HTML5', color: '#E34F26', icon: 'HTML' },
+    { name: 'CSS3', color: '#1572B6', icon: 'CSS' },
+    { name: 'Node.js', color: '#339933', icon: 'Node' },
+    { name: 'Git', color: '#F05032', icon: 'Git' },
+    { name: 'Figma', color: '#F24E1E', icon: 'Figma' },
+    { name: 'AWS', color: '#FF9900', icon: 'AWS' },
+    { name: 'Docker', color: '#2496ED', icon: 'Docker' },
+    { name: 'Python', color: '#3776AB', icon: 'Python' },
+    { name: 'PHP', color: '#777BB4', icon: 'PHP' },
+    { name: 'WordPress', color: '#21759B', icon: 'WP' },
+    { name: 'Shopify', color: '#7AB55C', icon: 'Shopify' },
+    { name: 'Stripe', color: '#008CDD', icon: 'Stripe' },
+    { name: 'GitHub', color: '#181717', icon: 'GitHub' },
+    { name: 'npm', color: '#CB3837', icon: 'npm' }
   ];
 
   useEffect(() => {
@@ -216,7 +216,7 @@ const WaterEffect = () => {
         ctx.font = `${logoSize * 0.4}px Arial, sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(logo.symbol, logoX, logoY);
+        ctx.fillText(logo.icon, logoX, logoY);
         
         // Draw logo name below
         ctx.fillStyle = '#B76E79';
@@ -342,7 +342,7 @@ const WaterEffect = () => {
           ctx.font = `${logoSize * 0.4}px Arial, sans-serif`;
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.fillText(logo.symbol, logoX, logoY);
+          ctx.fillText(logo.icon, logoX, logoY);
           
           // Draw logo name below
           ctx.fillStyle = '#B76E79';
