@@ -15,12 +15,12 @@ import {
   faWordpress,
   faShopify,
   faStripe,
-  faPostgresql,
   faVercel,
   faGithub,
   faNpm,
   faLinkedin,
-  faTwitter
+  faTwitter,
+  faInstagram
 } from '@fortawesome/free-brands-svg-icons';
 import { gsap } from '@/lib/gsap';
 
@@ -42,12 +42,12 @@ const LogoSlider = () => {
     { icon: faWordpress, name: 'WordPress', color: '#21759B' },
     { icon: faShopify, name: 'Shopify', color: '#7AB55C' },
     { icon: faStripe, name: 'Stripe', color: '#008CDD' },
-    { icon: faPostgresql, name: 'PostgreSQL', color: '#336791' },
     { icon: faVercel, name: 'Vercel', color: '#000000' },
     { icon: faGithub, name: 'GitHub', color: '#181717' },
     { icon: faNpm, name: 'npm', color: '#CB3837' },
     { icon: faLinkedin, name: 'LinkedIn', color: '#0A66C2' },
-    { icon: faTwitter, name: 'Twitter', color: '#1DA1F2' }
+    { icon: faTwitter, name: 'Twitter', color: '#1DA1F2' },
+    { icon: faInstagram, name: 'Instagram', color: '#E4405F' }
   ];
 
   useEffect(() => {
