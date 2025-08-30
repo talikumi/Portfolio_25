@@ -54,16 +54,16 @@ const Hero = () => {
         <p ref={paraRef} className="max-w-xl mx-auto text-blush-pink mt-4 leading-relaxed font-gravita font-light">
 
   Front-end developer based in 
-  <span className="relative mx-1 after:content-[''] after:absolute after:left-0 after:right-0 after:h-[1.5px] after:bg-blush-pink after:top-1/2 after:translate-y-[0.8px]">
+  <span className="relative mx-1 after:content-[''] after:absolute after:left-0 after:right-0 after:h-[1.5px] after:bg-blush-pink after:top-1/2">
     Rome
   </span> →
-  <span className="relative mx-1 after:content-[''] after:absolute after:left-0 after:right-0 after:h-[1.5px] after:bg-blush-pink after:top-1/2 after:translate-y-[0.8px]">
+  <span className="relative mx-1 after:content-[''] after:absolute after:left-0 after:right-0 after:h-[1.5px] after:bg-blush-pink after:top-1/2">
     Pisa
   </span> →
-  <span className="relative mx-1 after:content-[''] after:absolute after:left-0 after:right-0 after:h-[1.5px] after:bg-blush-pink after:top-1/2 after:translate-y-[0.8px]">
+  <span className="relative mx-1 after:content-[''] after:absolute after:left-0 after:right-0 after:h-[1.5px] after:bg-blush-pink after:top-1/2">
     Florence
   </span> →
-  <span className="relative mx-1 after:content-[''] after:absolute after:left-0 after:right-0 after:h-[1.5px] after:bg-blush-pink after:top-1/2 after:translate-y-[0.8px]">
+  <span className="relative mx-1 after:content-[''] after:absolute after:left-0 after:right-0 after:bg-blush-pink">
     Västerås
   </span>?
   <br />

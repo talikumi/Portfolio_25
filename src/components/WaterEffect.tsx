@@ -189,8 +189,8 @@ const WaterEffect = () => {
     // Fill with gradient background from blush-white to light blue
     const gradient = ctx.createLinearGradient(0, 0, 0, height);
     gradient.addColorStop(0, '#FFF8F2'); // blush-white at top
-    gradient.addColorStop(0.50, '#FFF8F2'); // blush-white extends to 70% down
-    gradient.addColorStop(1, '#93C5FD'); // light blue at bottom
+    gradient.addColorStop(0.60, '#FFF8F2'); // blush-white extends to 70% down
+    gradient.addColorStop(1, '#b3d6fd'); // light blue at bottom
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
