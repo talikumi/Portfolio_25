@@ -17,34 +17,7 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
 
-  // Gentle parallax on vertical grid lines while scrolling past Hero
-  useIsomorphicLayoutEffect(() => {
-    const section = sectionRef.current;
-    const container = linesRef.current;
-    if (!section || !container) return;
 
-    const lines = Array.from(container.querySelectorAll('[data-line]')) as HTMLElement[];
-    if (lines.length === 0) return;
-
-    const ctx = gsap.context(() => {
-      const mid = (lines.length - 1) / 2;
-      lines.forEach((line, index) => {
-        const offset = (index - mid) * 4; // subtle spread
-        gsap.to(line, {
-          yPercent: offset,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          }
-        });
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section ref={sectionRef} id="home" className="min-h-screen relative flex flex-col justify-center items-center px-6 pt-20 pb-12 overflow-hidden">
@@ -53,12 +26,12 @@ const Hero = () => {
 
       
 	  <div ref={linesRef} className="absolute inset-0 z-0 pointer-events-none flex justify-between">
-  		{[...Array(7)].map((_, i) => (<div key={i} data-line className="w-px bg-[#C59364] opacity-40"></div>))}
+  		{[...Array(7)].map((_, i) => (<div key={i} data-line className="w-px h-full bg-[#C59364] opacity-40"></div>))}
 	  </div>
 
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto text-center">
+      <div className="relative z-10 max-w-5xl mx-auto text-center mt-24">
         <div className="relative inline-block">
           <h2 ref={subtitleRef} className="editorial-subtitle mb-4 opacity-75">
             Portfolio — 2025
@@ -73,12 +46,12 @@ const Hero = () => {
         
         {/* Horizontal line divider with "in a nutshell" text */}
         <div className="flex items-center justify-center mt-14">
-          <div className="flex-1 h-px bg-blush-pink max-w-[200px]"></div>
-          <span className="px-4 text-lg font-voyage text-blush-pink tracking-wider mb-2">in a nutshell</span>
-          <div className="flex-1 h-px bg-blush-pink max-w-[200px]"></div>
+          <div className="flex-1 h-px bg-blush-rosegold max-w-[200px]"></div>
+          <span className="px-4 text-lg font-voyage text-blush-rosegold/80 tracking-wider mb-2">in a nutshell</span>
+          <div className="flex-1 h-px bg-blush-rosegold max-w-[200px]"></div>
         </div>
 		
-        <p ref={paraRef} className="max-w-xl mx-auto text-blush-pink mt-8 leading-relaxed">
+        <p ref={paraRef} className="max-w-xl mx-auto text-blush-pink mt-4 leading-relaxed font-gravita font-light">
 
   Front-end developer based in 
   <span className="relative mx-1 after:content-[''] after:absolute after:left-0 after:right-0 after:h-[1.5px] after:bg-blush-pink after:top-1/2 after:translate-y-[0.8px]">
@@ -90,7 +63,9 @@ const Hero = () => {
   <span className="relative mx-1 after:content-[''] after:absolute after:left-0 after:right-0 after:h-[1.5px] after:bg-blush-pink after:top-1/2 after:translate-y-[0.8px]">
     Florence
   </span> →
-  Västeras?
+  <span className="relative mx-1 after:content-[''] after:absolute after:left-0 after:right-0 after:h-[1.5px] after:bg-blush-pink after:top-1/2 after:translate-y-[0.8px]">
+    Västerås
+  </span>?
   <br />
   Currently experimenting with back-end projects on the side.
 </p>

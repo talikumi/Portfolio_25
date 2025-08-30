@@ -241,8 +241,8 @@ const ProjectGrid = () => {
         </div>
       </section>
       
-      {/* Spacer to ensure contact section is visible - increased height */}
-      <div className="h-[1000px] bg-blush-white"></div>
+      {/* Spacer to ensure contact section is visible - reduced height */}
+      <div className="h-[600px] bg-blush-white"></div>
     </>
   );
 };

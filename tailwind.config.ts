@@ -81,7 +81,8 @@ export default {
 			fontFamily: {
 				'playfair': ['"Playfair Display"', 'serif'],
 				'poppins': ['Poppins', 'sans-serif'],
-				'voyage': ['Voyage', 'serif']
+				'voyage': ['Voyage', 'serif'],
+				'gravita': ['Gravita', 'sans-serif']
 			},
 			keyframes: {
 				'accordion-down': {

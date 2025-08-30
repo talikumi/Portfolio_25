@@ -82,7 +82,9 @@ const AboutSection = () => {
 	}, []);
 
 	return (
-				<section ref={sectionRef} id="about" className="relative z-30 py-20 px-6 bg-blush-white overflow-hidden mt-[14px]">
+				<section ref={sectionRef} id="about" className="relative z-30 py-20 px-6 overflow-hidden mt-[14px]">
+			{/* Gradient background from blush-white to light blue */}
+			<div className="absolute inset-0 bg-gradient-to-b from-blush-white via-blue-50 to-blue-200 z-0"></div>
 		 <P5Background />
 		 <WaterEffect />
  
@@ -102,7 +104,7 @@ const AboutSection = () => {
 				containerClassName="text-blush-mauve leading-relaxed"
 				textClassName="text-4xl font-voyage"
 			>
-				With an eye for detail and a passion for blending aesthetics with functionality, I create digital experiences that are both beautiful and intuitive. My approach combines editorial design sensibilities with modern web technologies. I believe in the power of subtle animations, thoughtful typography, and elegant color palettes to elevate digital products.
+				My approach to the web is about creating spaces where people feel at ease. I focus on minimizing friction and noise while prioritizing clean, intuitive interactions. Off-screen, you’ll usually find me experimenting with messy new recipes, heating up over videogames, and fueling my competitive edge on the tennis court.
 			</ScrollFloat>
 
 			<TechnologyCarousel />

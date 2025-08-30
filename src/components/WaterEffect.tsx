@@ -221,29 +221,17 @@ const WaterEffect = () => {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     
-    const mainText = "With an eye for detail and a passion for blending aesthetics with functionality, I create digital experiences that are both beautiful and intuitive.";
+    const mainText = [
+      "My approach to the web is about creating spaces where people feel at ease.",
+      "I focus on minimizing friction and noise, while prioritizing clean and intuitive interactions.",
+      "On the other hand, when not coding, you'll usually find me experimenting with messy new recipes,",
+	  "heating up over videogames, or fueling my competitive edge on the tennis court."
+    ];
     
-    // Word wrap for the main text
-    const maxWidth = width * 0.6; // Reduced from 0.8 to 0.6 for narrower text
-    const words = mainText.split(' ');
-    let line = '';
-    const lines = [];
-    
-    for (let i = 0; i < words.length; i++) {
-      const testLine = line + words[i] + ' ';
-      const metrics = ctx.measureText(testLine);
-      if (metrics.width > maxWidth && i > 0) {
-        lines.push(line);
-        line = words[i] + ' ';
-      } else {
-        line = testLine;
-      }
-    }
-    lines.push(line);
-    
-    lines.forEach(line => {
-      ctx.fillText(line.trim(), centerX, currentY);
-      currentY += lineHeight;
+    // Draw each sentence on its own line
+    mainText.forEach(sentence => {
+      ctx.fillText(sentence, centerX, currentY);
+      currentY += lineHeight * 0.8; // Reduced spacing between sentences
     });
 
     // Set logo slider position (fixed, independent of expertise section)

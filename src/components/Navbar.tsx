@@ -60,14 +60,14 @@ const Navbar = () => {
   return (
     <>
       {/* Logo */}
-      <div ref={logoRef} className="fixed top-5 left-[10.5rem] z-50 opacity-0 translate-y-2">
+      <div ref={logoRef} className="fixed top-5 left-8 z-50 opacity-0 translate-y-2">
         <a href="#" className="font-playfair text-2xl font-medium text-blush-rosegold">
           blush<span className="text-blush-mauve">.</span>
         </a>
       </div>
 
       {/* Hamburger Menu Button */}
-      <nav ref={navRef} className="fixed top-5 right-5 z-50 opacity-0 translate-y-2">
+      <nav ref={navRef} className="fixed top-5 right-12 z-50 opacity-0 translate-y-2">
         <button
           ref={hamburgerRef}
           onClick={toggleMenu}
@@ -107,7 +107,7 @@ const Navbar = () => {
               <a
                 href={`#${id}`}
                 onClick={closeMenu}
-                className={`text-2xl font-playfair transition-colors duration-300 ${
+                className={`text-2xl font-voyage transition-colors duration-300 ${
                   activeSection === id 
                     ? 'text-blush-rosegold' 
                     : 'text-blush-gold hover:text-blush-rosegold'
