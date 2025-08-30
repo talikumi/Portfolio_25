@@ -186,8 +186,12 @@ const WaterEffect = () => {
     
     const iconSpacing = 80; // Space between icons
 
-    // Fill with blush-white background (same as ProjectGrid)
-    ctx.fillStyle = '#FFF8F2'; // blush-white color
+    // Fill with gradient background from blush-white to light blue
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, '#FFF8F2'); // blush-white at top
+    gradient.addColorStop(0.50, '#FFF8F2'); // blush-white extends to 70% down
+    gradient.addColorStop(1, '#93C5FD'); // light blue at bottom
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
     // Calculate positions based on canvas size
@@ -276,13 +280,11 @@ const WaterEffect = () => {
       const boxX = column === 0 ? leftColumnX : rightColumnX;
       const boxY = currentY + (row * (skillBoxHeight + skillBoxSpacing));
       
-      // Draw skill box background
-      ctx.fillStyle = '#FFF8F2'; // blush-white background
+      // Draw skill box with transparent background
       ctx.strokeStyle = '#B76E79'; // blush-rosegold border
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.roundRect(boxX, boxY - skillBoxHeight/2, skillBoxWidth, skillBoxHeight, 8);
-      ctx.fill();
       ctx.stroke();
       
       // Draw skill text

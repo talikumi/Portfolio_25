@@ -88,7 +88,7 @@ const AboutSection = () => {
 		 <P5Background />
 		 <WaterEffect />
  
-		<div className="max-w-6xl mx-auto opacity-0">
+		<div className="max-w-6xl mx-auto">
 		  <h2 data-reveal className="editorial-subtitle text-center">About</h2>
 		  
 		  {/* Testo centrato */}
