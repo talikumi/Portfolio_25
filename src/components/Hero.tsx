@@ -50,9 +50,7 @@ const Hero = () => {
     <section ref={sectionRef} id="home" className="min-h-screen relative flex flex-col justify-center items-center px-6 pt-20 pb-12 overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-blush-gradient opacity-80"></div>
-      
-      {/* Add CanvasPetals component */}
-      {/*<CanvasPetals />*/}
+
       
 	  <div ref={linesRef} className="absolute inset-0 z-0 pointer-events-none flex justify-between">
   		{[...Array(7)].map((_, i) => (<div key={i} data-line className="w-px bg-[#C59364] opacity-40"></div>))}
@@ -72,6 +70,13 @@ const Hero = () => {
         <h1 ref={titleRef} className="editorial-title mb-6">
 			Hello, I'm <span>Nina </span>  <br />and welcome to my  <br />digital garden
         </h1>
+        
+        {/* Horizontal line divider with "in a nutshell" text */}
+        <div className="flex items-center justify-center mt-14">
+          <div className="flex-1 h-px bg-blush-pink max-w-[200px]"></div>
+          <span className="px-4 text-lg font-voyage text-blush-pink tracking-wider mb-2">in a nutshell</span>
+          <div className="flex-1 h-px bg-blush-pink max-w-[200px]"></div>
+        </div>
 		
         <p ref={paraRef} className="max-w-xl mx-auto text-blush-pink mt-8 leading-relaxed">
 
@@ -87,8 +92,15 @@ const Hero = () => {
   </span> →
   Västeras?
   <br />
-  Sometimes I enjoy exploring back-end projects too.
+  Currently experimenting with back-end projects on the side.
 </p>
+
+        {/* Animated double arrow */}
+        <div className="mt-12 flex justify-center">
+          <div className="animate-bounce text-xl" style={{color: '#b76e79', opacity: 0.8}}>
+		  <i className="fa-solid fa-angle-down"></i>
+          </div>
+        </div>
 
 
 		{/*}

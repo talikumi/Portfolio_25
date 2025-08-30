@@ -1,5 +1,6 @@
 import { useRef, useMemo } from 'react';
 import { gsap, useIsomorphicLayoutEffect } from '@/lib/gsap';
+import flowerSvg from '/src/images/flower.svg';
 
 interface Project {
   id: number;
@@ -102,6 +103,51 @@ const ProjectGrid = () => {
         }
       });
 
+      // Flower rotation animation synced with horizontal scroll
+      const flower = document.querySelector('[data-flower]');
+      if (flower) {
+        gsap.to(flower, {
+          rotation: 360,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: () => `+=${track.scrollWidth - window.innerWidth + 100}`,
+            scrub: 1,
+          }
+        });
+      }
+
+      // Clock hands rotation animation - counter-clockwise with different speeds
+      const hourHand = document.querySelector('[data-hour-hand]');
+      const minuteHand = document.querySelector('[data-minute-hand]');
+      
+      if (hourHand) {
+        gsap.to(hourHand, {
+          rotation: -90, // Counter-clockwise, slower (quarter rotation)
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: () => `+=${track.scrollWidth - window.innerWidth + 100}`,
+            scrub: 1,
+          }
+        });
+      }
+      
+      if (minuteHand) {
+        gsap.to(minuteHand, {
+          rotation: -180, // Counter-clockwise, slower (half rotation)
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: () => `+=${track.scrollWidth - window.innerWidth + 100}`,
+            scrub: 1,
+          }
+        });
+      }
+
       // Simple fade-in animation for cards
       const cards = gsap.utils.toArray<HTMLElement>('[data-card]');
       cards.forEach((card) => {
@@ -177,10 +223,26 @@ const ProjectGrid = () => {
             ))}
           </div>
         </div>
+        
+        {/* Flower decoration inside project section */}
+        <div className="flex justify-center py-8 relative z-50 -mt-40">
+          <div className="relative">
+            <img src={flowerSvg} alt="Flower decoration" className="w-24 h-24 opacity-90" data-flower />
+            {/* Clock hands */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              {/* Hour hand */}
+              <div className="absolute w-0.5 h-5 bg-rose-900/80 transform -translate-y-3 origin-bottom" style={{transform: 'translateY(-12px) rotate(45deg)'}} data-hour-hand></div>
+              {/* Minute hand */}
+              <div className="absolute w-0.5 h-7 bg-rose-900/80 transform -translate-y-4 origin-bottom" style={{transform: 'translateY(-16px) rotate(90deg)'}} data-minute-hand></div>
+              {/* Center dot */}
+              <div className="absolute w-1.5 h-1.5 bg-rose-900/80 rounded-full"></div>
+            </div>
+          </div>
+        </div>
       </section>
       
       {/* Spacer to ensure contact section is visible - increased height */}
-      <div className="h-screen bg-blush-white"></div>
+      <div className="h-[1000px] bg-blush-white"></div>
     </>
   );
 };

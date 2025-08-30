@@ -212,7 +212,7 @@ const WaterEffect = () => {
     ctx.textAlign = 'center';
 	ctx.letterSpacing = '4px'
     ctx.textBaseline = 'middle';
-    ctx.fillText("In a Nutshell", centerX, currentY);
+    ctx.fillText("The ( Work ) flow", centerX, currentY);
     currentY += lineHeight * 2;
 
     // Main text content - Voyage font, blush-rosegold color, much bigger
