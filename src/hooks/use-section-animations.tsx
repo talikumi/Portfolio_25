@@ -28,7 +28,7 @@ export const useSectionAnimations = () => {
       if (aboutSection) gsap.set(aboutSection, { zIndex: 10, position: 'relative' });
       if (projectsSection) gsap.set(projectsSection, { zIndex: 20, position: 'relative' });
 
-      // --- STACK EFFECT (only Hero, About, and Projects) ---
+      // --- STACK EFFECT (Hero, About, and Projects) ---
       // Pin Hero, About, and Projects with no spacing
       const stackSections = gsap.utils.toArray(['#home', '#about', '#projects']) as Element[];
       

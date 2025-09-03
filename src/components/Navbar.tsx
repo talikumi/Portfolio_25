@@ -76,18 +76,13 @@ const Navbar = () => {
         >
           {/* Hamburger Lines */}
           <span 
-            className={`block w-6 h-0.5 bg-blush-gold transition-all duration-300 ${
-              isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'
+            className={`block w-6 h-0.5 bg-blush-gold transition-all duration-300 origin-center ${
+              isMenuOpen ? 'rotate-45 translate-y-0.5 -translate-x-0.3' : '-translate-y-1'
             }`}
           />
           <span 
-            className={`block w-6 h-0.5 bg-blush-gold transition-all duration-300 ${
-              isMenuOpen ? 'opacity-0' : 'opacity-100'
-            }`}
-          />
-          <span 
-            className={`block w-6 h-0.5 bg-blush-gold transition-all duration-300 ${
-              isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'
+            className={`block w-6 h-0.5 bg-blush-gold transition-all duration-300 origin-center ${
+              isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-0.8'
             }`}
           />
         </button>
@@ -103,11 +98,11 @@ const Navbar = () => {
       >
         <div className="flex flex-col items-center justify-center h-full space-y-8">
           {sections.map((id) => (
-            <div key={id} className="relative">
+            <div key={id} className="relative group">
               <a
                 href={`#${id}`}
                 onClick={closeMenu}
-                className={`text-2xl font-voyage transition-colors duration-300 ${
+                className={`text-2xl font-voyage transition-colors duration-300 tracking-[2px] ${
                   activeSection === id 
                     ? 'text-blush-rosegold' 
                     : 'text-blush-gold hover:text-blush-rosegold'
@@ -119,6 +114,8 @@ const Navbar = () => {
               {activeSection === id && (
                 <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blush-rosegold rounded-full" />
               )}
+              {/* Hover indicator */}
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blush-rosegold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
         </div>

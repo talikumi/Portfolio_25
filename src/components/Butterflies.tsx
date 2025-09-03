@@ -10,7 +10,7 @@ const Butterflies = () => {
               <defs>
                 <linearGradient id={`wingGradientLeft-${num}`} x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#DF9AA0" />
-                  <stop offset="100%" stopColor="#FFF" />
+                  <stop offset="100%" stopColor="#fff3e8" />
                 </linearGradient>
               </defs>
               <g transform="matrix(0.0156264,0,0,0.0156264,-5.01358,-5.8732)">

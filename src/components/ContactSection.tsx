@@ -41,7 +41,7 @@ const ContactSection = () => {
       <div className="max-w-4xl mx-auto">
         <h2 data-reveal className="editorial-subtitle text-center">Get in Touch</h2>
         <h3 data-reveal className="editorial-title text-center mb-4 text-4xl md:text-5xl">Let's Create Beauty Together</h3>
-        <p data-reveal className="text-center text-blush-mauve mb-12 mt-8 max-w-xl mx-auto">
+        <p data-reveal className="text-center text-blush-mauve mb-12 mt-8 max-w-xl mx-auto font-gravita">
           I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
         </p>
         
@@ -50,7 +50,7 @@ const ContactSection = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-blush-mauve mb-1">
+                  <label htmlFor="name" className="block text-sm font-medium text-blush-mauve mb-1 font-gravita">
                     Name
                   </label>
                   <input
@@ -64,7 +64,7 @@ const ContactSection = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-blush-mauve mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-blush-mauve mb-1 font-gravita">
                     Email
                   </label>
                   <input
@@ -79,7 +79,7 @@ const ContactSection = () => {
                 </div>
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-blush-mauve mb-1">
+                <label htmlFor="message" className="block text-sm font-medium text-blush-mauve mb-1 font-gravita">
                   Message
                 </label>
                 <textarea
@@ -97,7 +97,7 @@ const ContactSection = () => {
                   type="submit"
                   className="px-8 py-3 bg-blush-rosegold text-white rounded-sm hover:bg-blush-rosegold/90 transition-colors flex items-center gap-2"
                 >
-                  <span>Send Message</span>
+                  <span className="font-gravita">Send Message</span>
                   <Feather size={16} />
                 </button>
               </div>

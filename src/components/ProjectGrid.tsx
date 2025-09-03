@@ -15,65 +15,56 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Serene Spa Retreat',
-    year: 'Spring 2022',
-    description: 'A luxurious interface for a high-end wellness brand.',
-    imageUrl: 'https://images.unsplash.com/photo-1649972904349',
+    title: 'Project 1',
+    year: 'Spring 2025',
+    description: 'Description 1',
+    imageUrl: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     tags: ['Design', 'React'],
     githubUrl: '#',
   },
   {
     id: 2,
-    title: 'Editorial Magazine',
+    title: 'Project 2',
     year: 'Summer 2023',
-    description: 'Modern take on classic magazine layouts.',
-    imageUrl: 'https://images.unsplash.com/photo-1581091226825',
+    description: 'Description 2',
+    imageUrl: 'https://plus.unsplash.com/premium_photo-1661963874418-df1110ee39c1?q=80&w=1986&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     tags: ['Layout', 'UI'],
     githubUrl: '#',
   },
   {
     id: 3,
-    title: 'Blush Boutique',
+    title: 'Project 3',
     year: 'Autumn 2023',
-    description: 'Sophisticated shopping experience with warm editorial vibes.',
-    imageUrl: 'https://images.unsplash.com/photo-1721322800607',
+    description: 'Description 3',
+    imageUrl: 'https://plus.unsplash.com/premium_photo-1661963212517-830bbb7d76fc?q=80&w=1986&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     tags: ['E‑commerce', 'UX'],
     githubUrl: '#',
   },
   {
     id: 4,
-    title: 'Studio Portfolio',
+    title: 'Project 4',
     year: 'Winter 2024',
-    description: 'Minimal portfolio with immersive interactions.',
-    imageUrl: 'https://images.unsplash.com/photo-1545235617-9465d2a55698',
+    description: 'Description 4',
+    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     tags: ['Animation', 'GSAP'],
     githubUrl: '#',
   },
   {
     id: 5,
-    title: 'Rose Gold Dashboard',
+    title: 'Project 5',
     year: 'Spring 2024',
-    description: 'Elegant analytics with blush accents and smooth micro‑interactions.',
-    imageUrl: 'https://images.unsplash.com/photo-1496302662116-85c1954ba9a6',
+    description: 'Description 5',
+    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     tags: ['Dashboard', 'TypeScript'],
     githubUrl: '#',
   },
   {
     id: 6,
-    title: 'Atelier Lookbook',
+    title: 'Project 6',
     year: 'Summer 2024',
-    description: 'Editorial lookbook layout with soft motion and typography focus.',
-    imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9',
+    description: 'Description 6',
+    imageUrl: 'https://plus.unsplash.com/premium_photo-1683121696175-d05600fefb85?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     tags: ['Editorial', 'Animation'],
-    githubUrl: '#',
-  },
-  {
-    id: 7,
-    title: 'Wellness Journal',
-    year: 'Autumn 2024',
-    description: 'Calm journaling app with tactile interactions and serene visuals.',
-    imageUrl: 'https://images.unsplash.com/photo-1526318472351-c75fcf070305',
-    tags: ['Product', 'UX'],
     githubUrl: '#',
   },
 ];
@@ -99,7 +90,7 @@ const ProjectGrid = () => {
           start: "top top",
           end: () => `+=${track.scrollWidth - window.innerWidth + 100}`,
           scrub: 1,
-          pin: false, // Don't pin here since it's handled by the stacking effect
+          pin: false, 
         }
       });
 
@@ -118,13 +109,13 @@ const ProjectGrid = () => {
         });
       }
 
-      // Clock hands rotation animation - counter-clockwise with different speeds
+      // Clock hands rotation animation 
       const hourHand = document.querySelector('[data-hour-hand]');
       const minuteHand = document.querySelector('[data-minute-hand]');
       
       if (hourHand) {
         gsap.to(hourHand, {
-          rotation: -90, // Counter-clockwise, slower (quarter rotation)
+          rotation: -90, 
           ease: "none",
           scrollTrigger: {
             trigger: section,
@@ -137,7 +128,7 @@ const ProjectGrid = () => {
       
       if (minuteHand) {
         gsap.to(minuteHand, {
-          rotation: -180, // Counter-clockwise, slower (half rotation)
+          rotation: -180, 
           ease: "none",
           scrollTrigger: {
             trigger: section,
@@ -189,31 +180,31 @@ const ProjectGrid = () => {
                 data-card
                 className="flex-shrink-0 h-full w-[60vw] sm:w-[44vw] md:w-[34vw] lg:w-[26vw] xl:w-[22vw]"
               >
-                <div className="group relative w-full h-auto aspect-square bg-white border border-blush-gold/25 rounded-sm shadow-sm hover:border-blush-gold/50 transition-colors overflow-hidden">
+                <div className="group relative w-full h-auto aspect-square bg-white border border-blush-gold/50 rounded-sm shadow-sm transition-colors overflow-hidden">
                   <img
                     src={project.imageUrl}
                     alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blush-mauve/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blush-mauve/80 via-transparent to-transparent opacity-100 transition-opacity duration-500" />
                   <span className="absolute top-3 left-3 text-xs text-white/90 bg-blush-mauve/60 backdrop-blur px-2 py-1 rounded-full">
                     {project.year}
                   </span>
 
                   <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h4 className="font-playfair text-blush-white text-lg mb-1 drop-shadow">{project.title}</h4>
-                    <p className="text-xs text-white/90 mb-2 drop-shadow">
+                    <h4 className="font-gravita text-blush-white text-lg mb-1">{project.title}</h4>
+                    <p className="text-xs text-white/90 mb-2 drop-shadow font-gravita">
                       {project.description}
                     </p>
                     <div className="flex items-center justify-between">
                       <div className="flex flex-wrap gap-2">
                         {project.tags?.slice(0, 2).map((tag) => (
-                          <span key={tag} className="text-[10px] text-blush-pink bg-blush-pink/20 border border-blush-gold/40 px-2 py-0.5 rounded-sm">
+                          <span key={tag} className="text-[10px] text-blush-white bg-blush-pink/20 border border-blush-white/40 px-2 py-0.5 rounded-sm font-gravita">
                             {tag}
                           </span>
                         ))}
                       </div>
-                      <a href={project.githubUrl || '#'} className="text-xs text-blush-gold hover:text-blush-white transition-colors">
+                      <a href={project.githubUrl || '#'} className="text-xs text-blush-white font-gravita">
                         View →
                       </a>
                     </div>
@@ -224,24 +215,22 @@ const ProjectGrid = () => {
           </div>
         </div>
         
-        {/* Flower decoration inside project section */}
+        {/* Rotating Flower decoration */}
+
         <div className="flex justify-center py-8 relative z-50 -mt-40">
           <div className="relative">
             <img src={flowerSvg} alt="Flower decoration" className="w-24 h-24 opacity-90" data-flower />
-            {/* Clock hands */}
+      
             <div className="absolute inset-0 flex items-center justify-center">
-              {/* Hour hand */}
-              <div className="absolute w-0.5 h-5 bg-rose-900/80 transform -translate-y-3 origin-bottom" style={{transform: 'translateY(-12px) rotate(45deg)'}} data-hour-hand></div>
-              {/* Minute hand */}
-              <div className="absolute w-0.5 h-7 bg-rose-900/80 transform -translate-y-4 origin-bottom" style={{transform: 'translateY(-16px) rotate(90deg)'}} data-minute-hand></div>
-              {/* Center dot */}
+              <div className="absolute w-0.5 h-6 bg-rose-900/80 transform -translate-y-3 origin-bottom" style={{transform: 'translateY(-12px) rotate(45deg)'}} data-hour-hand></div>
+              <div className="absolute w-0.5 h-8 bg-rose-900/80 transform -translate-y-4 origin-bottom" style={{transform: 'translateY(-16px) rotate(90deg)'}} data-minute-hand></div>
               <div className="absolute w-1.5 h-1.5 bg-rose-900/80 rounded-full"></div>
             </div>
           </div>
         </div>
       </section>
       
-      {/* Spacer to ensure contact section is visible - reduced height */}
+      {/* Spacer */}
       <div className="h-[600px] bg-blush-white"></div>
     </>
   );

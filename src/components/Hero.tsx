@@ -67,7 +67,7 @@ const Hero = () => {
     Västerås
   </span>?
   <br />
-  Currently experimenting with back-end projects on the side.
+  Currently experimenting with back-end projects in my spare time.
 </p>
 
         {/* Animated double arrow */}

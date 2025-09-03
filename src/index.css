@@ -13,6 +13,13 @@
 }
 
 @font-face {
+	font-family: 'Voyage';
+	src: url('/fonts/voyage-bold.otf') format('opentype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
 	font-family: 'Gravita';
 	src: url('/fonts/GravitaGEO-Light-BF6579288461506.otf') format('opentype');
 	font-weight: 300;
@@ -121,7 +128,8 @@
   }
 
   .editorial-subtitle {
-	@apply font-poppins font-light mb-3 text-sm md:text-base text-blush-gold tracking-wider uppercase;
+	@apply font-gravita font-light mb-3 text-sm md:text-base tracking-wider uppercase;
+	color: #C68C1C;
   }
   
   .section-divider {
